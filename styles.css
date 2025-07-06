@@ -471,6 +471,10 @@ section:nth-child(even) {
     text-align: center;
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .stack-item:hover {
@@ -479,17 +483,22 @@ section:nth-child(even) {
     border-color: var(--primary-blue);
 }
 
-.stack-logo {
-    font-size: 2rem;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
-    color: var(--primary-blue);
+.stack-logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .stack-item span {
     color: var(--text-secondary);
     font-size: 1rem;
     font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+    display: block;
 }
 
 /* Team Section */
@@ -515,6 +524,9 @@ section:nth-child(even) {
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .team-member::before {
@@ -533,20 +545,15 @@ section:nth-child(even) {
     border-color: var(--primary-blue);
 }
 
-.member-avatar {
-    width: 80px;
-    height: 80px;
-    background: var(--gradient-blue);
+.member-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.3rem;
-    color: white;
     margin: 0 auto 1.5rem;
     box-shadow: var(--shadow);
+    border: 3px solid var(--primary-blue);
+    display: block;
 }
 
 .team-member h3 {
@@ -674,5 +681,20 @@ section:nth-child(even) {
     
     .pain-point, .service-card, .team-member, .timeline-item {
         padding: 2rem;
+    }
+    
+    .member-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .stack-logo-img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.8rem;
+    }
+    
+    .stack-item {
+        padding: 1.5rem 1rem;
     }
 } 
