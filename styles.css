@@ -25,6 +25,8 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -87,6 +89,7 @@ section {
     width: 100%;
     padding: 4rem 2rem;
     margin: 0 auto;
+    scroll-margin-top: 80px;
 }
 
 section:nth-child(even) {
@@ -604,6 +607,9 @@ section:nth-child(even) {
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 .social-link:hover {
@@ -616,17 +622,66 @@ section:nth-child(even) {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .pain-points-grid, .services-grid, .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .approach-timeline {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stack-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .header {
         padding: 1rem;
+        position: relative;
     }
     
     .logo-text {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .ai-badge {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
     }
     
     section {
+        padding: 2.5rem 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-section {
         padding: 3rem 1rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .loading-bar {
+        max-width: 300px;
+        margin: 1.5rem auto;
+    }
+    
+    /* Mobile-friendly table */
+    .comparison-table {
+        margin-top: 2rem;
+        border-radius: 15px;
     }
     
     .table-header, .table-row {
@@ -638,49 +693,87 @@ section:nth-child(even) {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
         text-align: left;
+        padding: 1rem;
     }
     
     .header-cell:last-child, .cell:last-child {
         border-bottom: none;
     }
     
-    .approach-timeline {
-        grid-template-columns: 1fr;
+    .header-cell {
+        background: var(--primary-blue);
+        color: white;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
     
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
+    .cell {
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
     
-    .section-title {
-        font-size: 2.5rem;
+    .table-row.highlight {
+        border-left: none;
+        border-top: 3px solid var(--primary-blue);
+        font-weight: 500;
     }
     
-    .main-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-section {
-        padding: 4rem 1rem;
-    }
-}
-
-@media (max-width: 480px) {
+    /* Grid layouts */
     .pain-points-grid, .services-grid, .team-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .approach-timeline {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
     .stack-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
     
-    .timeline-item p, .service-card p {
-        text-align: center;
-    }
-    
+    /* Card improvements */
     .pain-point, .service-card, .team-member, .timeline-item {
-        padding: 2rem;
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .pain-point h3, .service-card h3, .team-member h3, .timeline-item h3 {
+        font-size: 1.4rem;
+    }
+    
+    .pain-point p, .service-card p, .timeline-item p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .timeline-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stack-item {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stack-logo-img {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 0.8rem;
+    }
+    
+    .stack-item span {
+        font-size: 0.9rem;
     }
     
     .member-photo {
@@ -688,13 +781,196 @@ section:nth-child(even) {
         height: 100px;
     }
     
-    .stack-logo-img {
-        width: 50px;
-        height: 50px;
+    .member-title {
+        font-size: 1rem;
+    }
+    
+    .member-company {
+        font-size: 0.85rem;
+    }
+    
+    .approach-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .approach-note {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .approach-note p {
+        font-size: 1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.8rem;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .ai-badge {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    section {
+        padding: 2rem 0.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    
+    .hero-section {
+        padding: 2.5rem 0.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .loading-bar {
+        max-width: 250px;
+        height: 3px;
+        margin: 1rem auto;
+    }
+    
+    /* Ultra-mobile cards */
+    .pain-point, .service-card, .team-member, .timeline-item {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .pain-point h3, .service-card h3, .team-member h3, .timeline-item h3 {
+        font-size: 1.3rem;
         margin-bottom: 0.8rem;
     }
     
+    .pain-point p, .service-card p, .timeline-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .pain-icon, .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .timeline-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .stack-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
     .stack-item {
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .stack-logo-img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0.6rem;
+    }
+    
+    .stack-item span {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    .member-photo {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
+    
+    .member-title {
+        font-size: 0.95rem;
+    }
+    
+    .member-company {
+        font-size: 0.8rem;
+    }
+    
+    .approach-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .approach-note {
+        padding: 1.2rem;
+        margin-top: 1.2rem;
+    }
+    
+    .approach-note p {
+        font-size: 0.9rem;
+    }
+    
+    .footer {
+        padding: 2rem 0.8rem;
+    }
+    
+    .footer-content {
+        gap: 1.2rem;
+    }
+    
+    .social-links {
+        gap: 1.2rem;
+    }
+    
+    /* Mobile table improvements */
+    .comparison-table {
+        font-size: 0.9rem;
+    }
+    
+    .header-cell, .cell {
+        padding: 0.8rem;
+    }
+    
+    /* Better touch targets */
+    .stack-item, .pain-point, .service-card, .team-member, .timeline-item {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    .stack-item:hover, .pain-point:hover, .service-card:hover, 
+    .team-member:hover, .timeline-item:hover {
+        transform: translateY(-3px);
+    }
+    
+    /* Text adjustments */
+    .timeline-item p, .service-card p {
+        text-align: left;
     }
 } 
