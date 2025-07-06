@@ -583,6 +583,76 @@ section:nth-child(even) {
     line-height: 1.4;
 }
 
+/* Contact Section */
+.contact-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+}
+
+.contact-container {
+    margin-top: 3rem;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--light-gray);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.contact-item:hover {
+    background: var(--light-blue);
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    min-width: 60px;
+    height: 60px;
+    background: var(--gradient-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.contact-details h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-details p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+
+
 /* Footer */
 .footer {
     background: var(--gradient-blue);
@@ -637,6 +707,15 @@ section:nth-child(even) {
     
     .stack-grid {
         grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .contact-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .contact-info {
+        gap: 2rem;
     }
     
     .table-header, .table-row {
@@ -753,6 +832,7 @@ section:nth-child(even) {
         font-size: 0.7rem;
         font-weight: 700;
         z-index: 5;
+        white-space: nowrap;
     }
     
     .cell {
@@ -907,6 +987,33 @@ section:nth-child(even) {
     .social-links {
         justify-content: center;
         gap: 1.5rem;
+    }
+    
+    .contact-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .contact-info {
+        gap: 2rem;
+    }
+    
+    .contact-item {
+        padding: 1.2rem;
+    }
+    
+    .contact-icon {
+        min-width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .contact-details h3 {
+        font-size: 1.1rem;
+    }
+    
+    .contact-details p {
+        font-size: 1rem;
     }
 }
 
@@ -1080,9 +1187,12 @@ section:nth-child(even) {
     
     .table-row.highlight::before {
         font-size: 0.6rem;
-        padding: 1px 6px;
-        top: -6px;
-        left: 8px;
+        padding: 4px 8px;
+        top: -2px;
+        right: -2px;
+        border-radius: 0 12px 0 12px;
+        white-space: nowrap;
+        overflow: visible;
     }
     
     /* Better touch targets */
@@ -1099,5 +1209,28 @@ section:nth-child(even) {
     /* Text adjustments */
     .timeline-item p, .service-card p {
         text-align: left;
+    }
+    
+    .contact-item {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .contact-icon {
+        min-width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .contact-details h3 {
+        font-size: 1rem;
+    }
+    
+    .contact-details p {
+        font-size: 0.9rem;
+    }
+    
+    .contact-info {
+        gap: 1.5rem;
     }
 } 
