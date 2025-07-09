@@ -57,16 +57,19 @@ body {
     gap: 0.5rem;
 }
 
-.logo-text {
-    font-family: 'Orbitron', monospace;
-    font-size: 2.5rem;
-    font-weight: 900;
-    background: var(--gradient-blue);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -1px;
+.logo-img {
+    height: 4rem;
+    width: auto;
+    max-width: 280px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+
 
 .ai-badge {
     background: var(--gradient-blue);
@@ -668,8 +671,6 @@ section:nth-child(even) {
     font-weight: 500;
 }
 
-
-
 /* Footer */
 .footer {
     background: var(--gradient-blue);
@@ -686,6 +687,19 @@ section:nth-child(even) {
     margin: 0 auto;
     flex-wrap: wrap;
     gap: 2rem;
+}
+
+.footer-logo-img {
+    height: 3.5rem;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo-img:hover {
+    opacity: 1;
 }
 
 .social-links {
@@ -755,8 +769,9 @@ section:nth-child(even) {
         position: relative;
     }
     
-    .logo-text {
-        font-size: 1.8rem;
+    .logo-img {
+        height: 3rem;
+        max-width: 200px;
     }
     
     .ai-badge {
@@ -1001,6 +1016,11 @@ section:nth-child(even) {
         gap: 1.5rem;
     }
     
+    .footer-logo-img {
+        height: 2.8rem;
+        max-width: 160px;
+    }
+    
     .social-links {
         justify-content: center;
         gap: 1.5rem;
@@ -1039,8 +1059,9 @@ section:nth-child(even) {
         padding: 0.8rem;
     }
     
-    .logo-text {
-        font-size: 1.5rem;
+    .logo-img {
+        height: 2.5rem;
+        max-width: 160px;
     }
     
     .ai-badge {
@@ -1163,6 +1184,11 @@ section:nth-child(even) {
     
     .footer-content {
         gap: 1.2rem;
+    }
+    
+    .footer-logo-img {
+        height: 2rem;
+        max-width: 130px;
     }
     
     .social-links {
