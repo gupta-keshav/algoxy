@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Algoxy AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: hsl(0, 0%, 0%);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Instrument Serif', serif;
+    }
+
+    /* ── Liquid Glass ─────────────────────────────────────────── */
+    .liquid-glass {
+      position: relative;
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      cursor: pointer;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      transition: scale 0.2s ease;
+    }
+
+    .liquid-glass:hover { scale: 1.03; }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* ── Animations ───────────────────────────────────────────── */
+    @keyframes fade-rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-rise       { animation: fade-rise 0.8s ease-out 0.1s both; }
+    .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.25s both; }
+
+    /* ── Page ────────────────────────────────────────────────── */
+    .page {
+      position: relative;
+      background: #000;
+    }
+
+    /* ── Background Video (fixed so it covers full viewport) ─── */
+    .bg-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: blur(2px);
+      transform: scale(1.04);
+    }
+
+    /* ── Dark overlay over video ──────────────────────────────── */
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
+
+    /* ── Navbar — identical to index.html ────────────────────── */
+    .navbar {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 80rem;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .navbar-brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.875rem;
+      letter-spacing: -0.025em;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar-logo {
+      height: 2rem;
+      width: auto;
+      display: block;
+    }
+
+    .navbar-links {
+      display: none;
+      flex-direction: row;
+      gap: 2.5rem;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .navbar-links a {
+      font-size: 0.875rem;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .navbar-links a:hover  { opacity: 0.8; }
+    .navbar-links a.active { opacity: 0.4; pointer-events: none; }
+
+    .navbar-cta {
+      border-radius: 9999px;
+      padding: 0.625rem 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    @media (min-width: 768px) {
+      .navbar-links { display: flex; }
+    }
+
+    /* ── All page content sits above video + overlay ─────────── */
+    .page-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── Services header — centered, compact ─────────────────── */
+    .services-header {
+      flex-shrink: 0;
+      padding: 1rem 2rem 1.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+    }
+
+    .services-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 0.35rem;
+    }
+
+    .services-heading {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      color: #fff;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+    }
+
+    /* ── Grid — natural content height, framed by top + bottom borders */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin: 0 2rem;
+      border-radius: 2px;
+    }
+
+    /* ── Cards ────────────────────────────────────────────────── */
+    .service-card {
+      padding: 2.5rem 2.75rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.25);
+      transition: background 0.3s ease;
+    }
+
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: rgba(0, 0, 0, 0.35); }
+
+    .service-card-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+
+    .service-card-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.65rem;
+      line-height: 1.15;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .service-card-divider {
+      width: 2rem;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
+    }
+
+    /* List with natural spacing */
+    .service-card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.95rem;
+      padding-top: 1.1rem;
+    }
+
+    .service-card-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.88);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .service-card-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ── Tablet: stack cards ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        margin: 0 1.5rem;
+      }
+      .service-card {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        overflow: visible;
+      }
+      .service-card:last-child { border-bottom: none; }
+      .service-card-list { gap: 0.85rem; }
+    }
+
+    /* ── Hamburger — hidden on desktop ───────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5.5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile backdrop ─────────────────────────────────────── */
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-backdrop.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ── Slide-down panel menu — liquid glass ────────────────── */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px) saturate(1.8);
+      -webkit-backdrop-filter: blur(22px) saturate(1.8);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      padding: 5.5rem 2rem 2rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease;
+    }
+
+    /* Gradient border — same trick as .liquid-glass::before */
+    .mobile-menu::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3)  0%,
+        rgba(255, 255, 255, 0.1)  20%,
+        rgba(255, 255, 255, 0)    40%,
+        rgba(255, 255, 255, 0)    60%,
+        rgba(255, 255, 255, 0.1)  80%,
+        rgba(255, 255, 255, 0.35) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu-links li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .mobile-menu-links li:last-child { border-bottom: none; }
+
+    .mobile-menu-links a {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.75rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      opacity: 0.85;
+      display: block;
+      padding: 0.85rem 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .mobile-menu-links a:hover { opacity: 1; }
+    .mobile-menu-links a.inactive { opacity: 0.3; cursor: default; pointer-events: none; }
+
+    /* Navbar lifts above panel + backdrop when open */
+    .navbar.menu-open { z-index: 300; }
+
+    @media (max-width: 767px) {
+      .hamburger { display: flex; }
+      .navbar-cta { display: none; }
+    }
+
+    /* ── Mobile ───────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .navbar {
+        padding: 1.25rem 1.25rem;
+      }
+      .navbar-brand {
+        font-size: 1.35rem;
+      }
+      .navbar-logo {
+        height: 1.5rem;
+      }
+      .navbar-cta {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+      }
+      .services-grid {
+        margin: 0 1rem;
+      }
+      .service-card {
+        padding: 1.75rem 1.5rem;
+      }
+      .service-card-title {
+        font-size: 1.35rem;
+      }
+      .service-card-list li {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Background video -->
+    <video class="bg-video" autoplay loop muted playsinline>
+      <source src="src/vid.mp4" type="video/mp4" />
+    </video>
+    <div class="bg-overlay"></div>
+
+    <!-- All page content above video -->
+    <div class="page-content">
+
+    <!-- Navbar — same layout as index.html -->
+    <nav class="navbar animate-fade-rise">
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="index.html" class="navbar-brand">
+        <img src="src/logo.png" alt="Algoxy AI Logo" class="navbar-logo" />
+        ALGOXY AI
+      </a>
+      <ul class="navbar-links">
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="#" onclick="return false;" style="cursor:default;">Case Studies</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <a href="mailto:contact@algoxy.ai" class="liquid-glass navbar-cta" style="text-decoration:none;">Get in Touch</a>
+    </nav>
+
+    <!-- Centered header -->
+    <div class="services-header animate-fade-rise">
+      <p class="services-label">What we do</p>
+      <h1 class="services-heading">Our Services</h1>
+    </div>
+
+    <!-- Three columns that fill the remaining page height -->
+    <div class="services-grid animate-fade-rise-delay">
+
+      <!-- Card 1 -->
+      <div class="service-card">
+        <span class="service-card-number">01</span>
+        <h2 class="service-card-title">Data &amp; ML Infrastructure</h2>
+        <div class="service-card-divider"></div>
+        <ul class="service-card-list">
+          <li>Batch and streaming ETL pipelines with integrated DQ checks, anomaly detection, and observability</li>
+          <li>End-to-end ML platforms spanning feature stores, model registry, serving layers, and production monitoring</li>
+          <li>MLOps infrastructure supporting distributed multi-GPU training, automated deployment, and continuous evaluation</li>
+          <li>Lakehouse architectures on Databricks/Delta Lake/Spark optimized for large-scale analytical and operational workloads</li>
+          <li>High-throughput, low-latency streaming systems on Kafka for real-time data processing and event-driven architectures</li>
+          <li>Large-scale retrieval and recommendation engines backed by vector databases for semantic search and ranking</li>
+          <li>CI/CD and DevOps pipelines for reproducible, production-grade ML and data system deployments</li>
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card">
+        <span class="service-card-number">02</span>
+        <h2 class="service-card-title">AI &amp; ML Systems</h2>
+        <div class="service-card-divider"></div>
+        <ul class="service-card-list">
+          <li>LLM-powered AI agents, RAG pipelines, and GenAI workflows for automation and internal tooling</li>
+          <li>Modern computer vision systems from foundational model architectures to production-grade systems for detection, classification &amp; retrieval tasks</li>
+          <li>Multimodal AI systems that integrate heterogeneous data sources into unified inference and decision pipelines</li>
+          <li>Self-supervised, contrastive, and generative learning systems designed for low-label and large-scale training regimes</li>
+          <li>NLP interfaces and analytical chatbots enabling natural language querying over structured and unstructured data</li>
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card">
+        <span class="service-card-number">03</span>
+        <h2 class="service-card-title">Backend &amp; Platform Engineering</h2>
+        <div class="service-card-divider"></div>
+        <ul class="service-card-list">
+          <li>Cloud-native distributed systems on AWS/Kubernetes/EKS with fault tolerance, auto-scaling, and observability baked in</li>
+          <li>Large-scale storage platforms, data discovery and lineage systems, and complex account migration infrastructure</li>
+          <li>REST API design, service mesh patterns, and inter-service communication for high-throughput backend systems</li>
+          <li>SRE practices including SLO/SLA management, incident response, and reliability engineering for global platforms</li>
+          <li>PII encryption, compliance tooling, and data governance frameworks for regulated production environments</li>
+          <li>Graph database systems for modeling and querying complex relational and on-chain datasets</li>
+        </ul>
+      </div>
+
+    </div>
+
+    </div> <!-- /page-content -->
+  </div>
+  <!-- Mobile backdrop -->
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <!-- Mobile slide-down panel -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="inactive">Services</a></li>
+      <li><a href="#" class="inactive">Case Studies</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navbar    = document.querySelector('.navbar');
+    const menu      = document.getElementById('mobileMenu');
+    const backdrop  = document.getElementById('mobileBackdrop');
+
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      menu.classList.remove('open');
+      backdrop.classList.remove('open');
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = menu.classList.contains('open');
+      if (isOpen) { closeMenu(); }
+      else {
+        hamburger.classList.add('open');
+        navbar.classList.add('menu-open');
+        menu.classList.add('open');
+        backdrop.classList.add('open');
+      }
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a:not(.inactive)').forEach(a => {
+      a.addEventListener('click', closeMenu);
+    });
+  </script>
+</body>
+</html>

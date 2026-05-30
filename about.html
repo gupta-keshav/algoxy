@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Algoxy AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: hsl(0, 0%, 0%);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Instrument Serif', serif;
+    }
+
+    /* ── Liquid Glass ─────────────────────────────────────────── */
+    .liquid-glass {
+      position: relative;
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      cursor: pointer;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      transition: scale 0.2s ease;
+    }
+
+    .liquid-glass:hover { scale: 1.03; }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0)    40%,
+        rgba(255, 255, 255, 0)    60%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* ── Animations ───────────────────────────────────────────── */
+    @keyframes fade-rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-rise        { animation: fade-rise 0.8s ease-out 0.1s  both; }
+    .animate-fade-rise-delay  { animation: fade-rise 0.8s ease-out 0.3s  both; }
+    .animate-fade-rise-delay-2{ animation: fade-rise 0.8s ease-out 0.5s  both; }
+    .animate-fade-rise-delay-3{ animation: fade-rise 0.8s ease-out 0.65s both; }
+    .animate-fade-rise-delay-4{ animation: fade-rise 0.8s ease-out 0.8s  both; }
+
+    /* ── Page — full-screen, no scroll ───────────────────────── */
+    .page {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Background video ─────────────────────────────────────── */
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: blur(2px);
+      transform: scale(1.04);
+    }
+
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
+
+    /* ── Content above video ──────────────────────────────────── */
+    .page-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ── Navbar — identical to index.html ────────────────────── */
+    .navbar {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 80rem;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .navbar-brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.875rem;
+      letter-spacing: -0.025em;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar-logo {
+      height: 2rem;
+      width: auto;
+      display: block;
+    }
+
+    .navbar-links {
+      display: none;
+      flex-direction: row;
+      gap: 2.5rem;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .navbar-links a {
+      font-size: 0.875rem;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .navbar-links a:hover  { opacity: 0.8; }
+    .navbar-links a.active { opacity: 0.4; pointer-events: none; }
+
+    .navbar-cta {
+      border-radius: 9999px;
+      padding: 0.625rem 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    @media (min-width: 768px) {
+      .navbar-links { display: flex; }
+    }
+
+    /* ── About content — centered in remaining space ──────────── */
+    .about-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 2rem 4rem;
+      gap: 2.75rem;
+    }
+
+    /* Label */
+    .about-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Main description */
+    .about-description {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: #fff;
+      max-width: 70rem;
+    }
+
+    /* Attribute pills row */
+    .about-attrs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0 1.5rem;
+      list-style: none;
+    }
+
+    .about-attrs li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.75);
+      position: relative;
+    }
+
+    /* dot separator between items except the last */
+    .about-attrs li:not(:last-child)::after {
+      content: '·';
+      position: absolute;
+      right: -0.85rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Philosophy */
+    .about-philosophy {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .about-philosophy-underline {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* Background line */
+    .about-background {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+      white-space: nowrap; /* desktop: single line */
+    }
+
+    .about-background strong {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+
+    /* ── Hamburger — hidden on desktop ───────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5.5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile backdrop ─────────────────────────────────────── */
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-backdrop.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ── Slide-down panel menu — liquid glass ────────────────── */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px) saturate(1.8);
+      -webkit-backdrop-filter: blur(22px) saturate(1.8);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+      padding: 5.5rem 2rem 2rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease;
+    }
+
+    /* Gradient border — same trick as .liquid-glass::before */
+    .mobile-menu::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3)  0%,
+        rgba(255, 255, 255, 0.1)  20%,
+        rgba(255, 255, 255, 0)    40%,
+        rgba(255, 255, 255, 0)    60%,
+        rgba(255, 255, 255, 0.1)  80%,
+        rgba(255, 255, 255, 0.35) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu-links li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .mobile-menu-links li:last-child { border-bottom: none; }
+
+    .mobile-menu-links a {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.75rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      opacity: 0.85;
+      display: block;
+      padding: 0.85rem 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .mobile-menu-links a:hover { opacity: 1; }
+    .mobile-menu-links a.inactive { opacity: 0.3; cursor: default; pointer-events: none; }
+
+    /* Navbar lifts above panel + backdrop when open */
+    .navbar.menu-open { z-index: 300; }
+
+    @media (max-width: 767px) {
+      .hamburger { display: flex; }
+      .navbar-cta { display: none; }
+    }
+
+    /* ── Tablet ───────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .about-background {
+        white-space: normal; /* allow wrapping on smaller screens */
+      }
+    }
+
+    /* ── Mobile ───────────────────────────────────────────────── */
+    @media (max-width: 767px) {
+      /* Release fixed height so content isn't clipped */
+      .page {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      /* Keep video covering the full viewport on mobile */
+      .bg-video,
+      .bg-overlay {
+        position: fixed;
+      }
+      .navbar {
+        padding: 1.25rem 1.25rem;
+      }
+      .navbar-brand {
+        font-size: 1.35rem;
+      }
+      .navbar-logo {
+        height: 1.5rem;
+      }
+      .navbar-cta {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+      }
+      .about-body {
+        gap: 1.75rem;
+        padding: 1.5rem 1.25rem 3rem;
+        justify-content: center;
+      }
+      .about-description {
+        font-size: clamp(1.4rem, 6vw, 1.75rem);
+      }
+      .about-description br { display: none; }
+      .about-philosophy {
+        font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+      }
+      .about-background {
+        white-space: normal;
+        font-size: 0.875rem;
+      }
+      .about-attrs {
+        gap: 0.4rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Background video -->
+    <video class="bg-video" autoplay loop muted playsinline>
+      <source src="src/vid.mp4" type="video/mp4" />
+    </video>
+    <div class="bg-overlay"></div>
+
+    <div class="page-content">
+
+      <!-- Navbar -->
+      <nav class="navbar animate-fade-rise">
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="index.html" class="navbar-brand">
+          <img src="src/logo.png" alt="Algoxy AI Logo" class="navbar-logo" />
+          ALGOXY AI
+        </a>
+        <ul class="navbar-links">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="#" onclick="return false;" style="cursor:default;">Case Studies</a></li>
+          <li><a href="about.html" class="active">About Us</a></li>
+        </ul>
+        <a href="mailto:contact@algoxy.ai" class="liquid-glass navbar-cta" style="text-decoration:none;">Get in Touch</a>
+      </nav>
+
+      <!-- Centered about content -->
+      <div class="about-body">
+
+        <p class="about-label animate-fade-rise">Who we are</p>
+
+        <h1 class="about-description animate-fade-rise-delay">
+          We specialise in building robust big data pipelines,<br />production-grade ML platforms, and scalable backend systems
+        </h1>
+
+        <ul class="about-attrs animate-fade-rise-delay-2">
+          <li>Lean team</li>
+          <li>Boutique capacity</li>
+          <li>Shipping in weeks</li>
+          <li>Pocket Friendly</li>
+          <li>Maximising ROI</li>
+        </ul>
+
+        <p class="about-philosophy animate-fade-rise-delay-3">
+          Our Philosophy: <span class="about-philosophy-underline">Models for intelligence, Code for control.</span>
+        </p>
+
+        <p class="about-background animate-fade-rise-delay-4">
+          Ex-engineers from <strong>Google</strong>, <strong>Amazon</strong>, <strong>Goldman Sachs</strong>, <strong>Bosch Mobility</strong>, <strong>Siemens</strong> and unicorn startups
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <!-- Mobile backdrop -->
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <!-- Mobile slide-down panel -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="#" class="inactive">Case Studies</a></li>
+      <li><a href="about.html" class="inactive">About Us</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navbar    = document.querySelector('.navbar');
+    const menu      = document.getElementById('mobileMenu');
+    const backdrop  = document.getElementById('mobileBackdrop');
+
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      menu.classList.remove('open');
+      backdrop.classList.remove('open');
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = menu.classList.contains('open');
+      if (isOpen) { closeMenu(); }
+      else {
+        hamburger.classList.add('open');
+        navbar.classList.add('menu-open');
+        menu.classList.add('open');
+        backdrop.classList.add('open');
+      }
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a:not(.inactive)').forEach(a => {
+      a.addEventListener('click', closeMenu);
+    });
+  </script>
+</body>
+</html>
