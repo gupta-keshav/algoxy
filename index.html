@@ -223,7 +223,10 @@
       .hero-h1 {
         font-size: 8rem;
       }
+      .desktop-break { display: inline; }
     }
+
+    .desktop-break { display: none; }
 
     .hero-p {
       font-family: 'Inter', sans-serif;
@@ -377,9 +380,51 @@
     /* Navbar lifts above panel + backdrop when open */
     .navbar.menu-open { z-index: 300; }
 
+    /* ── Mobile bottom nav ───────────────────────────────────── */
+    .mobile-nav-bottom { display: none; }
+
     @media (max-width: 767px) {
-      .hamburger { display: flex; }
-      .navbar-cta { display: none; }
+      /* Grid layout: navbar / hero-content / bottom-nav fill exactly 100vh */
+      .hero-section {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        height: 100vh;
+        min-height: unset;
+        overflow: hidden;
+      }
+
+      /* Hide hamburger, center brand */
+      .hamburger    { display: none; }
+      .navbar-cta   { display: none; }
+      .navbar       { justify-content: center; }
+
+      /* Bottom nav visible, layered above bg */
+      .mobile-nav-bottom {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1.5rem 2rem 2rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .mobile-nav-bottom a {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        text-decoration-color: rgba(255, 255, 255, 0.35);
+        transition: color 0.2s ease, text-decoration-color 0.2s ease;
+      }
+
+      .mobile-nav-bottom a:hover {
+        color: #fff;
+        text-decoration-color: rgba(255, 255, 255, 0.7);
+      }
+      .mobile-nav-bottom a.inactive { opacity: 0.3; pointer-events: none; }
     }
 
     @media (max-width: 640px) {
@@ -391,10 +436,6 @@
       }
       .navbar-logo {
         height: 1.5rem;
-      }
-      .navbar-cta {
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
       }
       .hero-content {
         padding: 1rem 1.25rem 2rem;
@@ -412,16 +453,8 @@
 <body>
   <section class="hero-section">
 
-    <!-- Background Video -->
-    <video
-      class="hero-video"
-      autoplay
-      loop
-      muted
-      playsinline
-    >
-      <source src="src/vid.mp4" type="video/mp4" />
-    </video>
+    <!-- Background Image -->
+    <img src="src/photo.png" alt="" class="hero-video" />
 
     <!-- Dark overlay -->
     <div class="hero-overlay"></div>
@@ -449,21 +482,28 @@
     <!-- Hero Content -->
     <div class="hero-content">
       <h1 class="hero-h1 animate-fade-rise">
-        Turning Data Complexity into Business Clarity
+        Turning Technical Complexity<br class="desktop-break" /> into Business Clarity
       </h1>
 
       <p class="hero-p animate-fade-rise-delay">
-        Shipping AI-native Data & Backend systems, Engineered for Production
+        Full-stack AI-native engineering across data, models, and infrastructure
       </p>
 
       <a href="https://cal.com/algoxy/30min" target="_blank" class="liquid-glass hero-cta animate-fade-rise-delay-2" style="text-decoration:none;">
-        Request a Free Data Audit
+        Book a Discovery Call
       </a>
 
       <a href="mailto:contact@algoxy.ai" class="liquid-glass hero-cta-secondary animate-fade-rise-delay-2" style="text-decoration:none;">
         Get in Touch
       </a>
     </div>
+
+    <!-- Mobile bottom nav (inside section — sits in grid row 3) -->
+    <nav class="mobile-nav-bottom">
+      <a href="services.html">Services</a>
+      <a href="#" class="inactive">Case Studies</a>
+      <a href="about.html">About Us</a>
+    </nav>
 
   </section>
 
