@@ -4,23 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services - Algoxy AI</title>
+  <meta name="description" content="Explore Algoxy AI's services: data & ML infrastructure, AI & ML systems, and backend & platform engineering for production-grade deployments." />
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Algoxy AI" />
+  <meta property="og:url"         content="https://algoxy.ai/services.html" />
+  <meta property="og:title"       content="Services - Algoxy AI" />
+  <meta property="og:description" content="Explore Algoxy AI's services: data & ML infrastructure, AI & ML systems, and backend & platform engineering for production-grade deployments." />
+  <meta property="og:image"       content="https://algoxy.ai/src/photo.png" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Services - Algoxy AI" />
+  <meta name="twitter:description" content="Explore Algoxy AI's services: data & ML infrastructure, AI & ML systems, and backend & platform engineering for production-grade deployments." />
+  <meta name="twitter:image"       content="https://algoxy.ai/src/photo.png" />
   <link rel="icon" type="image/png" href="src/logo.png" />
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x5a6m1knt4");
-  </script>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2MZ9V6ELL8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2MZ9V6ELL8');
-  </script>
+  <!-- Analytics loaded conditionally via src/consent.js -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -469,6 +467,98 @@
       .mobile-nav-bottom a.inactive { opacity: 0.3; pointer-events: none; }
     }
 
+    /* ── Cookie consent banner ───────────────────────────────── */
+    .cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(calc(100% + 2rem));
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0.875rem 1rem 0.875rem 1.5rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px) saturate(1.8);
+      -webkit-backdrop-filter: blur(22px) saturate(1.8);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      white-space: nowrap;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cookie-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3)  0%,
+        rgba(255, 255, 255, 0.1)  20%,
+        rgba(255, 255, 255, 0)    40%,
+        rgba(255, 255, 255, 0)    60%,
+        rgba(255, 255, 255, 0.1)  80%,
+        rgba(255, 255, 255, 0.35) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .cookie-banner.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .cookie-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .cookie-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .cookie-accept {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .cookie-decline {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .cookie-btn:hover { opacity: 0.75; }
+
+    @media (max-width: 640px) {
+      .cookie-banner {
+        flex-direction: column;
+        gap: 0.75rem;
+        border-radius: 1.25rem;
+        padding: 1rem 1.25rem;
+        width: calc(100% - 2.5rem);
+        white-space: normal;
+        text-align: center;
+        bottom: 5rem;
+      }
+    }
+
     /* ── Mobile ───────────────────────────────────────────────── */
     @media (max-width: 640px) {
       .navbar {
@@ -499,7 +589,7 @@
   <div class="page">
 
     <!-- Background image -->
-    <img src="src/photo.png" alt="" class="bg-video" />
+    <img src="src/photo.webp" alt="" class="bg-video" />
     <div class="bg-overlay"></div>
 
     <!-- All page content above video -->
@@ -511,7 +601,7 @@
         <span></span><span></span><span></span>
       </button>
       <a href="index.html" class="navbar-brand">
-        <img src="src/logo.png" alt="Algoxy AI Logo" class="navbar-logo" />
+        <img src="src/logo.webp" alt="Algoxy AI Logo" class="navbar-logo" />
         ALGOXY AI
       </a>
       <ul class="navbar-links">
@@ -612,6 +702,16 @@
       <li><a href="about.html">About Us</a></li>
     </ul>
   </div>
+
+  <!-- Cookie consent banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <p class="cookie-text">We use cookies to understand how visitors use our site.</p>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-accept" id="cookieAccept">Accept</button>
+      <button class="cookie-btn cookie-decline" id="cookieDecline">Decline</button>
+    </div>
+  </div>
+  <script src="src/consent.js"></script>
 
   <script>
     const hamburger = document.querySelector('.hamburger');
