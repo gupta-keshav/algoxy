@@ -39,17 +39,33 @@
 
     function hideBanner() {
       banner.classList.remove('visible');
-      // Force display:none after transition as fallback for mobile browsers
-      setTimeout(function () { banner.style.display = 'none'; }, 500);
+      banner.style.opacity = '0';
+      banner.style.pointerEvents = 'none';
+      setTimeout(function () { banner.style.display = 'none'; }, 450);
     }
 
-    document.getElementById('cookieAccept').addEventListener('click', function () {
+    // Attach both click and touchend so mobile taps always register
+    function addTapListener(id, fn) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var handled = false;
+      function handle(e) {
+        if (handled) return;
+        handled = true;
+        e.preventDefault();
+        fn();
+      }
+      el.addEventListener('touchend', handle, { passive: false });
+      el.addEventListener('click', handle);
+    }
+
+    addTapListener('cookieAccept', function () {
       localStorage.setItem(KEY, 'accepted');
       loadAnalytics();
       hideBanner();
     });
 
-    document.getElementById('cookieDecline').addEventListener('click', function () {
+    addTapListener('cookieDecline', function () {
       localStorage.setItem(KEY, 'declined');
       hideBanner();
     });
