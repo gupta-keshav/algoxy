@@ -29,22 +29,29 @@
   // Already declined — do nothing, no banner
   if (stored === 'declined') { return; }
 
-  // No stored choice yet — show banner
+  // No stored choice — show banner
   function showBanner() {
     var banner = document.getElementById('cookieBanner');
     if (!banner) return;
 
-    // Slide in after a short delay
-    setTimeout(function () { banner.classList.add('visible'); }, 600);
+    // Show: set display:flex first, then fade in on next frame
+    setTimeout(function () {
+      banner.style.display = 'flex';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          banner.classList.add('visible');
+        });
+      });
+    }, 600);
 
+    // Hide: fade out, then set display:none
     function hideBanner() {
       banner.classList.remove('visible');
-      banner.style.opacity = '0';
       banner.style.pointerEvents = 'none';
-      setTimeout(function () { banner.style.display = 'none'; }, 450);
+      setTimeout(function () { banner.style.display = 'none'; }, 400);
     }
 
-    // Attach both click and touchend so mobile taps always register
+    // Register both click and touchend so mobile taps always register
     function addTapListener(id, fn) {
       var el = document.getElementById(id);
       if (!el) return;

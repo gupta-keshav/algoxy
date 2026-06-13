@@ -460,11 +460,12 @@
     /* ── Cookie consent banner ───────────────────────────────── */
     .cookie-banner {
       position: fixed;
+      display: none;
       bottom: 1.5rem;
       left: 50%;
-      transform: translateX(-50%) translateY(calc(100% + 2rem));
+      transform: translateX(-50%);
+      opacity: 0;
       z-index: 500;
-      display: flex;
       align-items: center;
       gap: 1.5rem;
       padding: 0.875rem 1rem 0.875rem 1.5rem;
@@ -474,7 +475,7 @@
       -webkit-backdrop-filter: blur(22px) saturate(1.8);
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
       white-space: nowrap;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.35s ease;
     }
 
     .cookie-banner::before {
@@ -499,7 +500,7 @@
     }
 
     .cookie-banner.visible {
-      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
     .cookie-text {
