@@ -37,15 +37,21 @@
     // Slide in after a short delay
     setTimeout(function () { banner.classList.add('visible'); }, 600);
 
+    function hideBanner() {
+      banner.classList.remove('visible');
+      // Force display:none after transition as fallback for mobile browsers
+      setTimeout(function () { banner.style.display = 'none'; }, 500);
+    }
+
     document.getElementById('cookieAccept').addEventListener('click', function () {
       localStorage.setItem(KEY, 'accepted');
       loadAnalytics();
-      banner.classList.remove('visible');
+      hideBanner();
     });
 
     document.getElementById('cookieDecline').addEventListener('click', function () {
       localStorage.setItem(KEY, 'declined');
-      banner.classList.remove('visible');
+      hideBanner();
     });
   }
 
