@@ -557,6 +557,61 @@
         display: inline-block;
       }
     }
+
+    /* ── Site footer ──────────────────────────────────────────── */
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      max-width: 80rem;
+      width: 100%;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      flex-shrink: 0;
+    }
+
+    .footer-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .footer-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: rgba(255, 255, 255, 0.7); }
+
+    .footer-sep {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 767px) {
+      .site-footer { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .site-footer {
+        flex-direction: column;
+        gap: 0.375rem;
+        padding: 1rem 1.25rem;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -614,6 +669,15 @@
       <a href="about.html">About Us</a>
     </nav>
 
+    <footer class="site-footer">
+      <span class="footer-copy">&copy; 2026 Algoxy AI</span>
+      <nav class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </footer>
+
   </section>
 
   <!-- Mobile backdrop -->
@@ -631,7 +695,7 @@
 
   <!-- Cookie consent banner -->
   <div class="cookie-banner" id="cookieBanner">
-    <p class="cookie-text">We use cookies to understand how visitors use our site.</p>
+    <p class="cookie-text">We use cookies to understand how visitors use our site. <a href="privacy.html" style="color:inherit;text-underline-offset:2px;">Privacy Policy</a></p>
     <div class="cookie-actions">
       <button class="cookie-btn cookie-accept" id="cookieAccept">Accept</button>
       <button class="cookie-btn cookie-decline" id="cookieDecline">Decline</button>

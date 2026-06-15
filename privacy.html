@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Studies - Algoxy AI</title>
-  <meta name="description" content="How Algoxy AI builds data pipelines, ML platforms, and scalable AI systems for businesses. Case studies coming soon." />
+  <title>Privacy Policy | Algoxy AI</title>
+  <link rel="icon" type="image/png" href="src/logo.png" />
+  <meta name="description" content="Privacy policy for Algoxy AI - how we collect and use data on algoxy.ai." />
+  <meta name="robots" content="noindex" />
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Algoxy AI" />
-  <meta property="og:url"         content="https://algoxy.ai/case-studies.html" />
-  <meta property="og:title"       content="Case Studies | Algoxy AI" />
-  <meta property="og:description" content="How Algoxy AI builds data pipelines, ML platforms, and scalable AI systems for businesses. Case studies coming soon." />
+  <meta property="og:url"         content="https://algoxy.ai/privacy.html" />
+  <meta property="og:title"       content="Privacy Policy | Algoxy AI" />
+  <meta property="og:description" content="Privacy policy for Algoxy AI - how we collect and use data on algoxy.ai." />
   <meta property="og:image"       content="https://algoxy.ai/src/og-image.png" />
-  <!-- Twitter / X -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Case Studies | Algoxy AI" />
-  <meta name="twitter:description" content="How Algoxy AI builds data pipelines, ML platforms, and scalable AI systems for businesses. Case studies coming soon." />
-  <meta name="twitter:image"       content="https://algoxy.ai/src/og-image.png" />
-  <link rel="icon" type="image/png" href="src/logo.png" />
   <!-- Analytics loaded conditionally via src/consent.js -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +21,6 @@
 
   <style>
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
     }
@@ -37,14 +32,10 @@
     }
 
     body {
-      background-color: hsl(0, 0%, 0%);
+      background-color: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Instrument Serif', serif;
     }
 
     /* ── Liquid Glass ─────────────────────────────────────────── */
@@ -95,19 +86,18 @@
     .animate-fade-rise       { animation: fade-rise 0.8s ease-out 0.1s  both; }
     .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.35s both; }
 
-    /* ── Page — full-screen, no scroll ───────────────────────── */
+    /* ── Page ─────────────────────────────────────────────────── */
     .page {
       position: relative;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       background: #000;
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Background image ─────────────────────────────────────── */
+    /* ── Background (fixed so it stays put while scrolling) ───── */
     .bg-video {
-      position: absolute;
+      position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
@@ -118,20 +108,19 @@
     }
 
     .bg-overlay {
-      position: absolute;
+      position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.52);
       z-index: 1;
     }
 
-    /* ── Content above video ──────────────────────────────────── */
+    /* ── Content ──────────────────────────────────────────────── */
     .page-content {
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       flex: 1;
-      min-height: 0;
     }
 
     /* ── Navbar ───────────────────────────────────────────────── */
@@ -181,8 +170,7 @@
       transition: opacity 0.2s ease;
     }
 
-    .navbar-links a:hover  { opacity: 0.8; }
-    .navbar-links a.active { opacity: 0.4; pointer-events: none; }
+    .navbar-links a:hover { opacity: 0.8; }
 
     .navbar-cta {
       border-radius: 9999px;
@@ -194,185 +182,83 @@
       .navbar-links { display: flex; }
     }
 
-    /* ── Centered coming-soon content ────────────────────────── */
-    .coming-body {
+    /* ── Legal body ───────────────────────────────────────────── */
+    .legal-body {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 2rem 4rem;
-      gap: 1.5rem;
+      padding: 2.5rem 2rem 5rem;
+      max-width: 52rem;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .coming-label {
+    .legal-label {
       font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 1rem;
     }
 
-    .coming-heading {
+    .legal-heading {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.05;
+      font-size: clamp(2rem, 5vw, 3rem);
       letter-spacing: -0.04em;
       color: #fff;
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
     }
 
-    .coming-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(0.875rem, 1.5vw, 1rem);
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.7;
-      max-width: 28rem;
-    }
-
-    /* ── Hamburger — hidden on desktop ───────────────────────── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5.5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      flex-shrink: 0;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* ── Mobile backdrop ─────────────────────────────────────── */
-    .mobile-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 100;
-      visibility: hidden;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .mobile-backdrop.open {
-      visibility: visible;
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* ── Slide-down panel menu — liquid glass ────────────────── */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(22px) saturate(1.8);
-      -webkit-backdrop-filter: blur(22px) saturate(1.8);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      overflow: hidden;
-      padding: 5.5rem 2rem 2rem;
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                  opacity 0.3s ease;
-    }
-
-    .mobile-menu::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      padding: 1.4px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.3)  0%,
-        rgba(255, 255, 255, 0.1)  20%,
-        rgba(255, 255, 255, 0)    40%,
-        rgba(255, 255, 255, 0)    60%,
-        rgba(255, 255, 255, 0.1)  80%,
-        rgba(255, 255, 255, 0.35) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .mobile-menu.open {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .mobile-menu-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .mobile-menu-links li {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .mobile-menu-links li:last-child { border-bottom: none; }
-
-    .mobile-menu-links a {
+    .legal-content h2 {
       font-family: 'Instrument Serif', serif;
-      font-size: 1.75rem;
+      font-size: 1.35rem;
       color: #fff;
-      text-decoration: none;
       letter-spacing: -0.02em;
-      opacity: 0.85;
-      display: block;
-      padding: 0.85rem 0;
-      transition: opacity 0.2s ease;
+      margin: 2.5rem 0 0.625rem;
     }
 
-    .mobile-menu-links a:hover  { opacity: 1; }
-    .mobile-menu-links a.inactive { opacity: 0.3; cursor: default; pointer-events: none; }
+    .legal-content p {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.85;
+      margin-bottom: 0.875rem;
+    }
 
-    .navbar.menu-open { z-index: 300; }
+    .legal-content ul {
+      margin: 0.375rem 0 0.875rem 1.375rem;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.9375rem;
+      line-height: 1.85;
+    }
+
+    .legal-content ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    .legal-content a {
+      color: rgba(255, 255, 255, 0.85);
+      text-underline-offset: 3px;
+    }
+
+    .legal-content a:hover {
+      color: #fff;
+    }
+
+    .legal-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin: 3rem 0 0;
+    }
 
     /* ── Mobile bottom nav ───────────────────────────────────── */
     .mobile-nav-bottom { display: none; }
 
     @media (max-width: 767px) {
-      /* Identical to about.html mobile approach — preserves z-index stacking */
-      .page {
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
-      }
-
-      .bg-video,
-      .bg-overlay { position: fixed; }
-
-      /* page-content keeps position:relative; z-index:2 from base — DO NOT override */
-
-      .hamburger  { display: none; }
       .navbar-cta { display: none; }
       .navbar     { justify-content: center; }
 
-      .coming-body {
-        justify-content: center;
-        padding: 1.5rem 1.25rem 3rem;
-        gap: 1.75rem;
+      .legal-body {
+        padding: 1.75rem 1.25rem 3rem;
       }
 
       .mobile-nav-bottom {
@@ -398,8 +284,12 @@
         color: #fff;
         text-decoration-color: rgba(255, 255, 255, 0.7);
       }
+    }
 
-      .mobile-nav-bottom a.inactive { opacity: 0.3; pointer-events: none; }
+    @media (max-width: 640px) {
+      .navbar       { padding: 1.25rem 1.25rem; }
+      .navbar-brand { font-size: 1.35rem; }
+      .navbar-logo  { height: 1.5rem; }
     }
 
     /* ── Cookie consent banner ───────────────────────────────── */
@@ -444,9 +334,7 @@
       pointer-events: none;
     }
 
-    .cookie-banner.visible {
-      opacity: 1;
-    }
+    .cookie-banner.visible { opacity: 1; }
 
     .cookie-text {
       font-family: 'Inter', sans-serif;
@@ -472,16 +360,8 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .cookie-accept {
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-    }
-
-    .cookie-decline {
-      background: transparent;
-      color: rgba(255, 255, 255, 0.45);
-    }
-
+    .cookie-accept  { background: rgba(255, 255, 255, 0.15); color: #fff; }
+    .cookie-decline { background: transparent; color: rgba(255, 255, 255, 0.45); }
     .cookie-btn:hover { opacity: 0.75; }
 
     @media (max-width: 640px) {
@@ -495,15 +375,6 @@
         text-align: center;
         bottom: 5rem;
       }
-    }
-
-    @media (max-width: 640px) {
-      .navbar        { padding: 1.25rem 1.25rem; }
-      .navbar-brand  { font-size: 1.35rem; }
-      .navbar-logo   { height: 1.5rem; }
-      .coming-body   { padding: 1.5rem 1.25rem 3rem; gap: 1.75rem; }
-      .coming-heading { font-size: clamp(2rem, 8vw, 2.75rem); }
-      .coming-sub    { font-size: 0.95rem; }
     }
 
     /* ── Site footer ──────────────────────────────────────────── */
@@ -556,39 +427,87 @@
 <body>
   <div class="page">
 
-    <!-- Background image -->
     <img src="src/photo.webp" alt="" class="bg-video" />
     <div class="bg-overlay"></div>
 
     <div class="page-content">
 
-      <!-- Navbar -->
       <nav class="navbar animate-fade-rise">
-        <button class="hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
         <a href="index.html" class="navbar-brand">
           <img src="src/logo.webp" alt="Algoxy AI Logo" class="navbar-logo" />
           ALGOXY AI
         </a>
         <ul class="navbar-links">
           <li><a href="services.html">Services</a></li>
-          <li><a href="case-studies.html" class="active">Case Studies</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
           <li><a href="about.html">About Us</a></li>
         </ul>
         <a href="mailto:contact@algoxy.ai" class="liquid-glass navbar-cta" style="text-decoration:none;">Get in Touch</a>
       </nav>
 
-      <!-- Coming soon content -->
-      <div class="coming-body">
-        <p class="coming-label animate-fade-rise">What we've built</p>
-        <h1 class="coming-heading animate-fade-rise">Coming Soon</h1>
-        <p class="coming-sub animate-fade-rise-delay">
-          We're documenting our work.<br />Case studies dropping soon.
-        </p>
+      <div class="legal-body">
+        <p class="legal-label animate-fade-rise">Last Updated &middot; June 2026</p>
+        <h1 class="legal-heading animate-fade-rise">Privacy Policy</h1>
+
+        <div class="legal-content animate-fade-rise-delay">
+
+          <h2>Who We Are</h2>
+          <p>Algoxy AI ("we," "our," "us") is an AI engineering consultancy operating the website at <a href="https://algoxy.ai">algoxy.ai</a>. For any privacy-related questions, contact us at <a href="mailto:contact@algoxy.ai">contact@algoxy.ai</a>.</p>
+
+          <h2>Information We Collect</h2>
+          <p>We collect information only in two ways:</p>
+          <ul>
+            <li><strong>Analytics data</strong> (with your consent) - pages visited, session duration, referrer URL, browser and device type, and approximate geographic location derived from your IP address, collected via Google Analytics 4 and Microsoft Clarity.</li>
+            <li><strong>Contact information</strong> - if you email us directly, we receive your email address and any details you choose to share.</li>
+          </ul>
+          <p>We do not collect personal information through any forms on this website.</p>
+
+          <h2>Cookies &amp; Tracking</h2>
+          <p>We use tracking technologies only with your consent. If you click "Accept" on our cookie banner:</p>
+          <ul>
+            <li>Google Analytics 4 sets cookies to distinguish visitors and measure sessions.</li>
+            <li>Microsoft Clarity sets cookies for anonymized session recording and heatmaps.</li>
+          </ul>
+          <p>Your consent choice is stored in your browser's localStorage (key: <code>algoxy-consent</code>). No personal data is stored there. If you decline, no tracking cookies are set. You can withdraw consent at any time by clearing site data for algoxy.ai in your browser settings.</p>
+
+          <h2>How We Use Your Information</h2>
+          <ul>
+            <li>To understand how visitors interact with our site and improve its content and performance.</li>
+            <li>To respond to business inquiries sent via email.</li>
+          </ul>
+          <p>We do not sell, rent, or share your data with third parties except as described below.</p>
+
+          <h2>Third-Party Services</h2>
+          <p>When you accept cookies, data is shared with:</p>
+          <ul>
+            <li><strong>Google Analytics 4</strong> (Google LLC) - governed by Google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</li>
+            <li><strong>Microsoft Clarity</strong> (Microsoft Corporation) - governed by Microsoft's <a href="https://privacy.microsoft.com" target="_blank" rel="noopener">Privacy Statement</a>.</li>
+          </ul>
+          <p>Data processed by these services may be transferred to and stored on servers outside your country.</p>
+
+          <h2>Data Retention</h2>
+          <ul>
+            <li>Google Analytics 4: usage data is retained for 14 months (Google's default).</li>
+            <li>Microsoft Clarity: session data is retained for 13 months.</li>
+            <li>Contact emails: retained as long as reasonably necessary to respond to your inquiry.</li>
+          </ul>
+
+          <h2>Your Rights</h2>
+          <p>Depending on your location, you may have the right to access, correct, delete, or export your personal data. To submit a request, email us at <a href="mailto:contact@algoxy.ai">contact@algoxy.ai</a>. If you are located in the EU/EEA or UK, you may also lodge a complaint with your local data protection authority.</p>
+
+          <h2>Children's Privacy</h2>
+          <p>Our website is not directed at children under 13. We do not knowingly collect personal data from children. If you believe we have inadvertently collected such data, please contact us and we will delete it promptly.</p>
+
+          <h2>Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. The "Last Updated" date at the top of this page reflects when the most recent changes were made. Continued use of the site following any update constitutes your acceptance of the revised policy.</p>
+
+          <h2>Contact</h2>
+          <p>For any questions or requests regarding this Privacy Policy, reach us at <a href="mailto:contact@algoxy.ai">contact@algoxy.ai</a>.</p>
+
+
+        </div>
       </div>
 
-      <!-- Mobile bottom nav -->
       <nav class="mobile-nav-bottom">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -607,57 +526,14 @@
     </div>
   </div>
 
-  <!-- Mobile backdrop -->
-  <div class="mobile-backdrop" id="mobileBackdrop"></div>
-
-  <!-- Mobile slide-down panel -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul class="mobile-menu-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="case-studies.html" class="inactive">Case Studies</a></li>
-      <li><a href="about.html">About Us</a></li>
-    </ul>
-  </div>
-
   <!-- Cookie consent banner -->
   <div class="cookie-banner" id="cookieBanner">
     <p class="cookie-text">We use cookies to understand how visitors use our site. <a href="privacy.html" style="color:inherit;text-underline-offset:2px;">Privacy Policy</a></p>
     <div class="cookie-actions">
-      <button class="cookie-btn cookie-accept" id="cookieAccept">Accept</button>
+      <button class="cookie-btn cookie-accept"  id="cookieAccept">Accept</button>
       <button class="cookie-btn cookie-decline" id="cookieDecline">Decline</button>
     </div>
   </div>
   <script src="src/consent.js"></script>
-
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navbar    = document.querySelector('.navbar');
-    const menu      = document.getElementById('mobileMenu');
-    const backdrop  = document.getElementById('mobileBackdrop');
-
-    function closeMenu() {
-      hamburger.classList.remove('open');
-      navbar.classList.remove('menu-open');
-      menu.classList.remove('open');
-      backdrop.classList.remove('open');
-    }
-
-    hamburger.addEventListener('click', () => {
-      const isOpen = menu.classList.contains('open');
-      if (isOpen) { closeMenu(); }
-      else {
-        hamburger.classList.add('open');
-        navbar.classList.add('menu-open');
-        menu.classList.add('open');
-        backdrop.classList.add('open');
-      }
-    });
-
-    backdrop.addEventListener('click', closeMenu);
-    menu.querySelectorAll('a:not(.inactive)').forEach(a => {
-      a.addEventListener('click', closeMenu);
-    });
-  </script>
 </body>
 </html>
